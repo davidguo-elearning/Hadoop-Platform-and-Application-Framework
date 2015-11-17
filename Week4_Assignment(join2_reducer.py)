@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+import sys
+
+# --------------------------------------------------------------------------
+#This reducer code will input a <movie, value> input file, and join words together
+# Note the input will come as a group of lines with same word (ie the key)
+# As it reads words it will hold on to the value field
+#
+# --------------------------------------------------------------------------
+
+prev_word     = "  "                #initialize previous word  to blank string
+running_total = 0
+
+for line in sys.stdin:
+    line       = line.strip()       #strip out carriage return
+    key_value  = line.split('\t')   #split line, into key and value, returns a list
+    line_cnt   = line_cnt+1    
+    
+    curr_word  = key_value[0]         #key is first item in list, indexed by 0
+    value_in   = key_value[1]         #value is 2nd item
+
+    if value_in.isdigit():
+       value_in = int(value_in)
+       if curr_word != prev_word:
+          running_total = value_in    
+          prev_word = curr_word  #set up previous word for the next set of input lines
+       else:
+          running_total += value_in 
+    else:
+       print( '%s\t%s' % (curr_word, running_total) )
