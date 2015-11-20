@@ -1,0 +1,5 @@
+def split_show_views(line):
+x = line.split(",")
+show = x[0]
+views = int(x[1])
+return (show,views)
