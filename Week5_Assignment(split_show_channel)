@@ -1,0 +1,5 @@
+def split_show_channel(line):
+    x = line.split(",")
+    show = x[0]
+    channel = x[1]
+    return (show,channel)
